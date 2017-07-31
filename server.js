@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env nodejs
 
 const
     // DEPENDENCIES
@@ -6,7 +6,7 @@ const
     { join } = require('path'),
 
     // CONFIGURATION
-    PORT = 8080,
+    PORT = 3000,
     PROJECTS_FOLDER = join(__dirname, 'public', 'fcc'),
     // APP
     app = express();
@@ -27,7 +27,7 @@ function getAllProjectInfo (req, res) {
     const fs = require('fs');
 
     fs.readdir(PROJECTS_FOLDER, (err, folders) => {
-        const projects = folders.map(dir => {
+        res.json(folders.map(dir => {
             const
                 name        = dir,
                 thumbPath   = join(PROJECTS_FOLDER, dir, 'thumbnail.png'),
@@ -38,10 +38,8 @@ function getAllProjectInfo (req, res) {
                 description = fs.existsSync(descPath) ? fs.readFileSync(descPath, 'utf8') : null;
 
             return { name, thumbnail, description };
-        })
+        }))
     });
-
-    res.json(projects)
 }
 
 function getProject (req, res) {

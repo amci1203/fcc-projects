@@ -1,0 +1,7 @@
+/node_modules/
+
+/public/app.js
+/public/styles.css
+
+/logs/
+!/logs/ignore-me

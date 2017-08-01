@@ -17,9 +17,8 @@ gulp.task('scriptsRefresh', ['scripts'], function () {
 
 gulp.task('watch', ['scripts', 'css'], function () {
     browserSync.init({
-	open   : false,
         notify : false,
-        proxy  : 'localhost:8080'
+        proxy  : 'localhost:3000'
     });
     watch('./app/css/**/*.css', function () {
         gulp.start('cssInject');
@@ -31,3 +30,15 @@ gulp.task('watch', ['scripts', 'css'], function () {
         browserSync.reload();
     });
 });
+
+gulp.task('watch-no-browser', ['scripts', 'css'], () => {
+    watch('./app/css/**/*.css', function () {
+        gulp.start('cssInject');
+    });
+    watch('./app/js/app.js', function () {
+        gulp.start('scriptsRefresh');
+    })
+    watch('./public/index.html', function () {
+        browserSync.reload();
+    });
+})

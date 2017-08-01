@@ -12,9 +12,11 @@ const
 
     },
 
-    createElement = (tag, classes = null, innerHTML = null) => {
+    createElement = (tag, classes = null, innerHTML = null, attrs = {}) => {
 
-        const el = document.createElement(tag);
+        const el   = document.createElement(tag);
+
+        Object.keys(attrs).forEach(key => attrs[key] && el.setAttribute(key, attrs[key]));
 
         classes && el.classList.add(Array.isArray(classes) ? [...classes] : classes);
         innerHTML && Object.assign(el, { innerHTML });
@@ -22,14 +24,18 @@ const
         return el;
     },
 
-    appendTo = (container, ...elements) => elements.forEach(el => container.appendChild(el)),
+    appendTo = (container, ...elements) => {
+        elements.forEach(el => container.appendChild(el));
+        return container;
+    },
 
     makeProjectThumbnails = projects => {
         const
-            section = createElement('section'),
+            section = document.createDocumentFragment(),
     	    thumbs  = projects.map(makeThumbnail);
 
-	appendTo(document.body, ...thumbs);
+        appendTo(section, ...thumbs);
+        appendTo(document.getElementById('projects'), section)
 
     },
 
@@ -40,16 +46,16 @@ const
     }) => {
 
         const format = str => str
-	    .split('-')
-	    .map(w => w.slice(0,1).toUpperCase() + w.slice(1))
-	    .join(' ')
-	;
+            .split('-')
+            .map(w => w.slice(0,1).toUpperCase() + w.slice(1))
+            .join(' ')
+        ;
 
-	return appendTo(createElement('article', 'thumbnail'),
-	    createElement('img', 'thumbnail__image',),
+        return appendTo(createElement('article', 'thumbnail'),
+            createElement('img', 'thumbnail__image', null, { src: thumbnail }),
             createElement('h1', 'thumbnail__title', format(name)),
             createElement('p', 'thumbnail__description', description)
-	)
+        );
     };
 
 

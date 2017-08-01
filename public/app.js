@@ -61,9 +61,14 @@
 	    createElement = function createElement(tag) {
 	    var classes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 	    var innerHTML = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+	    var attrs = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
 
 	    var el = document.createElement(tag);
+
+	    Object.keys(attrs).forEach(function (key) {
+	        return attrs[key] && el.setAttribute(key, attrs[key]);
+	    });
 
 	    classes && el.classList.add(Array.isArray(classes) ? [].concat(_toConsumableArray(classes)) : classes);
 	    innerHTML && Object.assign(el, { innerHTML: innerHTML });
@@ -75,15 +80,17 @@
 	        elements[_key - 1] = arguments[_key];
 	    }
 
-	    return elements.forEach(function (el) {
+	    elements.forEach(function (el) {
 	        return container.appendChild(el);
 	    });
+	    return container;
 	},
 	    makeProjectThumbnails = function makeProjectThumbnails(projects) {
-	    var section = createElement('section'),
+	    var section = document.createDocumentFragment(),
 	        thumbs = projects.map(makeThumbnail);
 
-	    appendTo.apply(undefined, [document.body].concat(_toConsumableArray(thumbs)));
+	    appendTo.apply(undefined, [section].concat(_toConsumableArray(thumbs)));
+	    appendTo(document.getElementById('projects'), section);
 	},
 	    makeThumbnail = function makeThumbnail(_ref) {
 	    var _ref$name = _ref.name,
@@ -100,7 +107,7 @@
 	        }).join(' ');
 	    };
 
-	    return appendTo(createElement('article', 'thumbnail'), createElement('img', 'thumbnail__image'), createElement('h1', 'thumbnail__title', format(name)), createElement('p', 'thumbnail__description', description));
+	    return appendTo(createElement('article', 'thumbnail'), createElement('img', 'thumbnail__image', null, { src: thumbnail }), createElement('h1', 'thumbnail__title', format(name)), createElement('p', 'thumbnail__description', description));
 	};
 
 	init();

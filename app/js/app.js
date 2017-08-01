@@ -22,17 +22,15 @@ const
         return el;
     },
 
-    appendTo = (container, ...elements) => {
-
-    }
+    appendTo = (container, ...elements) => elements.forEach(el => container.appendChild(el)),
 
     makeProjectThumbnails = projects => {
         const
-            div = createElement('section'),
-            len = projects.length;
-        for (let i = 0; i < len; i++) {
+            section = createElement('section'),
+    	    thumbs  = projects.map(makeThumbnail);
 
-        }
+	appendTo(document.body, ...thumbs);
+
     },
 
     makeThumbnail = ({
@@ -41,15 +39,19 @@ const
         description = 'No Description'
     }) => {
 
-        const
-            t     = str => 
-            thumb = createElement('a', 'thumbnail'),
-            image = createElement('img', 'thumbnail__image'),
-            title = createElement('h1', 'thumbnail__title'),
-            desc  = createElement('p', 'thumbnail__description');
+        const format = str => str
+	    .split('-')
+	    .map(w => w.slice(0,1).toUpperCase() + w.slice(1))
+	    .join(' ')
+	;
 
+	return appendTo(createElement('article', 'thumbnail'),
+	    createElement('img', 'thumbnail__image',),
+            createElement('h1', 'thumbnail__title', format(name)),
+            createElement('p', 'thumbnail__description', description)
+	)
     };
 
 
 
-document.addEventListener("DOMContentLoaded", init)
+init();

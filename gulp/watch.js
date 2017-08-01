@@ -17,6 +17,7 @@ gulp.task('scriptsRefresh', ['scripts'], function () {
 
 gulp.task('watch', ['scripts', 'css'], function () {
     browserSync.init({
+	open   : false,
         notify : false,
         proxy  : 'localhost:8080'
     });

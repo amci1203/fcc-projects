@@ -70,7 +70,20 @@
 	        return attrs[key] && el.setAttribute(key, attrs[key]);
 	    });
 
-	    classes && el.classList.add(Array.isArray(classes) ? [].concat(_toConsumableArray(classes)) : classes);
+	    if (classes) {
+	        console.log(classes);
+	        if (Array.isArray(classes)) {
+	            var _el$classList;
+
+	            (_el$classList = el.classList).add.apply(_el$classList, _toConsumableArray(classes));
+	        }
+	        if (classes.indexOf(' ') > -1) {
+	            var _el$classList2;
+
+	            (_el$classList2 = el.classList).add.apply(_el$classList2, _toConsumableArray(classes.split(' ')));
+	        } else el.classList.add(classes);
+	    }
+
 	    innerHTML && Object.assign(el, { innerHTML: innerHTML });
 
 	    return el;
@@ -97,8 +110,7 @@
 	        name = _ref$name === undefined ? 'Looking for a name...' : _ref$name,
 	        _ref$thumbnail = _ref.thumbnail,
 	        thumbnail = _ref$thumbnail === undefined ? false : _ref$thumbnail,
-	        _ref$description = _ref.description,
-	        description = _ref$description === undefined ? 'No Description' : _ref$description;
+	        description = _ref.description;
 
 
 	    var format = function format(str) {
@@ -107,7 +119,7 @@
 	        }).join(' ');
 	    };
 
-	    return appendTo(createElement('article', 'thumbnail'), createElement('img', 'thumbnail__image', null, { src: thumbnail }), createElement('h1', 'thumbnail__title', format(name)), createElement('p', 'thumbnail__description', description));
+	    return appendTo(createElement('article', 'thumbnail'), createElement('img', 'thumbnail__image', null, { src: thumbnail }), createElement('h1', 'thumbnail__title', format(name)), createElement('p', description ? 'thumbnail__description' : 'thumbnail__description none', description || '(No Description)'));
 	};
 
 	init();

@@ -18,7 +18,17 @@ const
 
         Object.keys(attrs).forEach(key => attrs[key] && el.setAttribute(key, attrs[key]));
 
-        classes && el.classList.add(Array.isArray(classes) ? [...classes] : classes);
+        if (classes) {
+            console.log(classes);
+            if (Array.isArray(classes)) {
+                el.classList.add(...classes);
+            }
+            if (classes.indexOf(' ') > -1) {
+                el.classList.add(...classes.split(' '));
+            }
+            else el.classList.add(classes);
+        }
+        
         innerHTML && Object.assign(el, { innerHTML });
 
         return el;
@@ -42,7 +52,7 @@ const
     makeThumbnail = ({
         name = 'Looking for a name...',
         thumbnail = false,
-        description = 'No Description'
+        description
     }) => {
 
         const format = str => str
@@ -52,9 +62,22 @@ const
         ;
 
         return appendTo(createElement('article', 'thumbnail'),
-            createElement('img', 'thumbnail__image', null, { src: thumbnail }),
-            createElement('h1', 'thumbnail__title', format(name)),
-            createElement('p', 'thumbnail__description', description)
+            createElement(
+                'img',
+                'thumbnail__image',
+                null,
+                { src: thumbnail }
+            ),
+            createElement(
+                'h1',
+                'thumbnail__title',
+                format(name)
+            ),
+            createElement(
+                'p', 
+                description ? 'thumbnail__description' : 'thumbnail__description none',
+                description || '(No Description)'
+            )
         );
     };
 

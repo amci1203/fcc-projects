@@ -1,0 +1,37 @@
+#projects {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.thumbnail {
+
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #00900C;
+
+    flex-basis: 100%;
+
+    @mixin atMedium {
+        margin: 1rem 1%;
+        flex-basis: 48%;
+    }
+
+    @mixin atLarge {
+        flex-basis: 31%;
+    }
+
+    &__title {
+        font-weight: 100;
+        text-align: center;
+    }
+
+    &__description {
+
+
+        &.none {
+            text-align: center;
+            font-weight: 600;
+        }
+    }
+
+}

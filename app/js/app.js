@@ -22,7 +22,7 @@ const
             .forEach(key => {
                 console.log(`KEY: ${key}\nVAL: ${attrs[key]}`);
                 if (tag == 'img' && key == 'data-src') {
-                    !attrs[key] && el.setAttribute(key, '/img/fcc-logo.png');
+                    !attrs[key] && el.setAttribute(key, '/img/fcc-logo-gray.png');
                 }
                 attrs[key] && el.setAttribute(key, attrs[key]);
             })

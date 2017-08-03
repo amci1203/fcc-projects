@@ -67,9 +67,9 @@
 	    var el = document.createElement(tag);
 
 	    Object.keys(attrs).forEach(function (key) {
-	        if (tag == 'img' && key == 'src') {
+	        console.log('KEY: ' + key + '\nVAL: ' + attrs[key]);
+	        if (tag == 'img' && key == 'data-src') {
 	            !attrs[key] && el.setAttribute(key, '/img/fcc-logo.png');
-	            return;
 	        }
 	        attrs[key] && el.setAttribute(key, attrs[key]);
 	    });
@@ -122,7 +122,7 @@
 	        }).join(' ');
 	    };
 
-	    return appendTo(createElement('article', 'thumbnail'), appendTo(createElement('a', null, null, { href: '/' + name }), createElement('img', 'thumbnail__image', null, { src: thumbnail })), createElement('h1', 'thumbnail__title', format(name)), createElement('p', description ? 'thumbnail__description' : 'thumbnail__description none', description || '(No Description)'));
+	    return appendTo(createElement('article', 'thumbnail'), appendTo(createElement('a', null, null, { href: '/' + name }), createElement('img', ['thumbnail__image', 'lazyload'], null, { 'data-src': thumbnail })), createElement('h1', 'thumbnail__title', format(name)), createElement('p', description ? 'thumbnail__description' : 'thumbnail__description none', description || '(No Description)'));
 	};
 
 	init();

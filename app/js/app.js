@@ -2,6 +2,8 @@
 
 import 'lazysizes';
 
+
+
 const
 
     init = () => {
@@ -18,11 +20,11 @@ const
 
         Object.keys(attrs)
             .forEach(key => {
-                if (tag == 'img' && key == 'src') {
+                console.log(`KEY: ${key}\nVAL: ${attrs[key]}`);
+                if (tag == 'img' && key == 'data-src') {
                     !attrs[key] && el.setAttribute(key, '/img/fcc-logo.png');
-                    return;
                 }
-                attrs[key] && el.setAttribute(key, attrs[key])
+                attrs[key] && el.setAttribute(key, attrs[key]);
             })
         ;
 
@@ -73,9 +75,9 @@ const
                 createElement('a', null, null, { href: `/${name}` }),
                 createElement(
                     'img',
-                    'thumbnail__image',
+                    ['thumbnail__image', 'lazyload'],
                     null,
-                    { src: thumbnail }
+                    { 'data-src': thumbnail }
                 )
             ),
             createElement(

@@ -71,8 +71,7 @@ const
         ;
 
         return appendTo(createElement('article', 'thumbnail'),
-            appendTo(
-                createElement('a', null, null, { href: `/${name}` }),
+            appendTo(createElement('a', null, null, { href: `/${name}` }),
                 createElement(
                     'img',
                     ['thumbnail__image', 'lazyload'],

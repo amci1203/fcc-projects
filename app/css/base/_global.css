@@ -6,8 +6,8 @@ body {
     font-family : 'Roboto', 'Arial', sans-serif;
     padding     : 0;
     margin      : 0;
-    background  : #006400; 
-    color       : #FFF;
+    background  : $body-bg; 
+    color       : $body-fg;
     &.sticky-top {
         @mixin atMedium { padding-top: $primary-navH };
     }

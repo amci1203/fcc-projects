@@ -6,7 +6,8 @@
 .thumbnail {
 
     margin: 1rem 0;
-    background: #00400C;
+    padding: 5px;
+    background: color($body-bg b(+ 5));
     box-shadow: 0 2px 3px 2px color($black a(0.5));
 
     flex-basis: 100%;
@@ -24,6 +25,7 @@
         display: block;
         margin: 0 auto;
         max-width: 100%;
+        border-bottom: 2px solid white;
     }
 
     &__title {
@@ -35,6 +37,7 @@
     &__description {
         padding: 0 0.95rem;
         padding-bottom: 1rem;
+        text-align: justify;
 
         &.none {
             text-align: center;

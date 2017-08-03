@@ -35,8 +35,8 @@
 
 /* DEFAULTS */
 
-    $body-bg : $white;
-    $body-fg : $darkest-gray;
+    $body-bg : $lightest-gray;
+    $body-fg : $dark-gray;
     $font-sz : 14px;
 
     $link-color       : $gray;

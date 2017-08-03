@@ -358,8 +358,8 @@ body {
     font-family : 'Roboto', 'Arial', sans-serif;
     padding     : 0;
     margin      : 0;
-    background  : #006400; 
-    color       : #FFF
+    background  : rgb(230, 230, 230); 
+    color       : rgb(77, 77, 77)
 }
 @media (min-width: 768px) {
   body.sticky-top {
@@ -1466,7 +1466,8 @@ img {
 .thumbnail {
 
     margin: 1rem 0;
-    background: #00400C;
+    padding: 5px;
+    background: rgb(219, 219, 219);
     -webkit-box-shadow: 0 2px 3px 2px rgba(0, 0, 0, 0.5);
             box-shadow: 0 2px 3px 2px rgba(0, 0, 0, 0.5);
 
@@ -1492,6 +1493,7 @@ img {
         display: block;
         margin: 0 auto;
         max-width: 100%;
+        border-bottom: 2px solid white;
 }
 .thumbnail__title {
         font-weight: 100;
@@ -1501,6 +1503,7 @@ img {
 .thumbnail__description {
         padding: 0 0.95rem;
         padding-bottom: 1rem;
+        text-align: justify;
 }
 .thumbnail__description.none {
   text-align: center;

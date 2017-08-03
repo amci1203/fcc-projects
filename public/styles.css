@@ -1466,8 +1466,9 @@ img {
 .thumbnail {
 
     margin: 1rem 0;
-    padding: 1rem;
-    background: #00900C;
+    background: #00400C;
+    -webkit-box-shadow: 0 2px 3px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 3px 2px rgba(0, 0, 0, 0.5);
 
     -ms-flex-preferred-size: 100%;
 
@@ -1487,9 +1488,19 @@ img {
         flex-basis: 31%;
   }
 }
+.thumbnail__image {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+}
 .thumbnail__title {
         font-weight: 100;
         text-align: center;
+        padding: 0 0.5rem;
+}
+.thumbnail__description {
+        padding: 0 0.95rem;
+        padding-bottom: 1rem;
 }
 .thumbnail__description.none {
   text-align: center;

@@ -33,7 +33,7 @@ function getAllProjectInfo (req, res) {
                 thumbPath   = join(PROJECTS_FOLDER, dir, 'thumbnail.png'),
                 descPath    = join(PROJECTS_FOLDER, dir, 'description.txt'),
                 // lets us know whether to render a background image or not
-                thumbnail   = fs.existsSync(thumbPath) ? join('fcc', dir, 'thumbnail.png') : false,
+                thumbnail   = fs.existsSync(thumbPath) ? `/fcc/${dir}/thumbnail.png` : false,
                 // reads the plaintext description to be sent to the client
                 description = fs.existsSync(descPath) ? fs.readFileSync(descPath, 'utf8') : null;
 

@@ -14,12 +14,19 @@ const
 
     createElement = (tag, classes = null, innerHTML = null, attrs = {}) => {
 
-        const el   = document.createElement(tag);
+        const el = document.createElement(tag);
 
-        Object.keys(attrs).forEach(key => attrs[key] && el.setAttribute(key, attrs[key]));
+        Object.keys(attrs)
+            .forEach(key => {
+                if (tag == 'img' && key == 'src') {
+                    !attrs[key] && el.setAttribute(key, '/img/fcc-logo.png');
+                    return;
+                }
+                attrs[key] && el.setAttribute(key, attrs[key])
+            })
+        ;
 
         if (classes) {
-            console.log(classes);
             if (Array.isArray(classes)) {
                 el.classList.add(...classes);
             }
@@ -62,11 +69,14 @@ const
         ;
 
         return appendTo(createElement('article', 'thumbnail'),
-            createElement(
-                'img',
-                'thumbnail__image',
-                null,
-                { src: thumbnail }
+            appendTo(
+                createElement('a', null, null, { href: `/${name}` }),
+                createElement(
+                    'img',
+                    'thumbnail__image',
+                    null,
+                    { src: thumbnail }
+                )
             ),
             createElement(
                 'h1',

@@ -20,7 +20,6 @@ const
 
         Object.keys(attrs)
             .forEach(key => {
-                console.log(`KEY: ${key}\nVAL: ${attrs[key]}`);
                 if (tag == 'img' && key == 'data-src') {
                     !attrs[key] && el.setAttribute(key, '/img/fcc-logo-gray.png');
                 }
@@ -71,10 +70,10 @@ const
         ;
 
         return appendTo(createElement('article', 'thumbnail'),
-            appendTo(createElement('a', null, null, { href: `/${name}` }),
+            appendTo(createElement('a', 'thumbnail__image', null, { href: `/${name}` }),
                 createElement(
                     'img',
-                    ['thumbnail__image', 'lazyload'],
+                    'lazyload',
                     null,
                     { 'data-src': thumbnail }
                 )

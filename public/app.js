@@ -67,7 +67,6 @@
 	    var el = document.createElement(tag);
 
 	    Object.keys(attrs).forEach(function (key) {
-	        console.log('KEY: ' + key + '\nVAL: ' + attrs[key]);
 	        if (tag == 'img' && key == 'data-src') {
 	            !attrs[key] && el.setAttribute(key, '/img/fcc-logo-gray.png');
 	        }
@@ -122,7 +121,7 @@
 	        }).join(' ');
 	    };
 
-	    return appendTo(createElement('article', 'thumbnail'), appendTo(createElement('a', null, null, { href: '/' + name }), createElement('img', ['thumbnail__image', 'lazyload'], null, { 'data-src': thumbnail })), createElement('h1', 'thumbnail__title', format(name)), createElement('p', description ? 'thumbnail__description' : 'thumbnail__description none', description || '(No Description)'));
+	    return appendTo(createElement('article', 'thumbnail'), appendTo(createElement('a', 'thumbnail__image', null, { href: '/' + name }), createElement('img', 'lazyload', null, { 'data-src': thumbnail })), createElement('h1', 'thumbnail__title', format(name)), createElement('p', description ? 'thumbnail__description' : 'thumbnail__description none', description || '(No Description)'));
 	};
 
 	init();
